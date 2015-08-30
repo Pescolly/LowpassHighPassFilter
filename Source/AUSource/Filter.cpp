@@ -14,40 +14,7 @@
 AUDIOCOMPONENT_ENTRY(AUBaseProcessFactory, Filter)
 
 
-enum
-{
-	kFilterParam_CutoffFrequency = 0,
-	kFilterParam_Resonance = 1,
-	kFilterParam_Lowpass = 2,
-	kFilterParam_Highpass = 3
-};
 
-
-static CFStringRef kCutoffFreq_Name = CFSTR("Cutoff Frequency");
-static CFStringRef kResonance_Name = CFSTR("Resonance");
-
-
-const float kMinCutoffHz = 12.0;
-const float kDefaultCutoff = 1000.0;
-const float kMinResonance = -20.0;
-const float kMaxResonance = 20.0;
-const float kDefaultResonance = 0;
-
-
-
-// Factory presets
-static const int kPreset_One = 0;
-static const int kPreset_Two = 1;
-static const int kNumberPresets = 2;
-
-static AUPreset kPresets[kNumberPresets] = 
-    {
-        { kPreset_One, CFSTR("Preset One") },		
-        { kPreset_Two, CFSTR("Preset Two") }		
-	};
-	
-static const int kPresetDefault = kPreset_One;
-static const int kPresetDefaultIndex = 0;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark ____Construction_Initialization
@@ -66,7 +33,7 @@ Filter::Filter(AudioUnit component) : AUEffectBase(component)
 	//
 	SetParameter(kFilterParam_CutoffFrequency, kDefaultCutoff );
 	SetParameter(kFilterParam_Resonance, kDefaultResonance );
-	SetParameter(kFilterParam_Lowpass, true);
+	SetParameter(kFilterParam_FilterType, kLowpassFilter);
 	
 	// kFilterParam_CutoffFrequency max value depends on sample-rate
 	SetParamHasSampleRateDependency(true );
@@ -130,6 +97,14 @@ OSStatus Filter::GetParameterInfo(	AudioUnitScope			inScope,
 				outParameterInfo.flags += kAudioUnitParameterFlag_IsHighResolution;
 				break;
 				
+			case kFilterParam_FilterType:
+				AUBase::FillInParameterName(outParameterInfo, kFilterType_Name, false);
+				outParameterInfo.unit = kAudioUnitParameterUnit_Indexed;
+				outParameterInfo.minValue = kLowpassFilter;
+				outParameterInfo.maxValue = kHighpassFilter;
+				outParameterInfo.defaultValue = kLowpassFilter;
+				break;
+				
 			default:
 				result = kAudioUnitErr_InvalidParameter;
 				break;
@@ -164,7 +139,7 @@ OSStatus Filter::GetPropertyInfo (	AudioUnitPropertyID				inID,
 				outWritable = false;
 				outDataSize = sizeof (AudioUnitCocoaViewInfo);
 				return noErr;
-
+			
 			case kAudioUnitCustomProperty_FilterFrequencyResponse:	// our custom property
 				if(inScope != kAudioUnitScope_Global ) return kAudioUnitErr_InvalidScope;
 				outDataSize = kNumberOfResponseFrequencies * sizeof(FrequencyResponse);
@@ -274,7 +249,8 @@ OSStatus Filter::GetPresets (CFArrayRef *outData) const
 	if (outData == NULL) return noErr;
 	
 	CFMutableArrayRef theArray = CFArrayCreateMutable (NULL, kNumberPresets, NULL);
-	for (int i = 0; i < kNumberPresets; ++i) {
+	for (int i = 0; i < kNumberPresets; ++i)
+	{
 		CFArrayAppendValue (theArray, &kPresets[i]);
     }
     

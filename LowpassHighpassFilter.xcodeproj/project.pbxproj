@@ -354,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				8BA05A56072072A900365D66 /* AU Source */,
+				C06501851B9261C60042D134 /* UI */,
 				623608AA19FAC154009FC301 /* CoreAudioUtilityClasses */,
 			);
 			path = Source;
@@ -687,6 +688,13 @@
 			);
 			name = "AU Source";
 			sourceTree = SOURCE_ROOT;
+		};
+		C06501851B9261C60042D134 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UI;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 

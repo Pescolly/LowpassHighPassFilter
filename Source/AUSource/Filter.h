@@ -56,6 +56,7 @@ public:
 		// A lookahead compressor or FFT-based processor should report the true latency in seconds
 	virtual Float64				GetLatency() {return 0.0;}
 
+	
 protected:
 		// Here we define a custom property so the view is able to retrieve the current frequency
 		// response curve.  The curve changes as the filter's cutoff frequency and resonance are
@@ -79,3 +80,41 @@ protected:
 		Float64		mMagnitude;
 	} FrequencyResponse;
 };
+
+enum
+{
+	kFilterParam_CutoffFrequency = 0,
+	kFilterParam_Resonance = 1,
+	kFilterParam_FilterType = 2
+};
+
+
+static CFStringRef kCutoffFreq_Name = CFSTR("Cutoff Frequency");
+static CFStringRef kResonance_Name = CFSTR("Resonance");
+static CFStringRef kFilterType_Name = CFSTR("Filter Type");
+static CFStringRef kHighpass_Name = CFSTR("Highpass Filter");
+
+
+const float kMinCutoffHz = 12.0;
+const float kDefaultCutoff = 1000.0;
+const float kMinResonance = -20.0;
+const float kMaxResonance = 20.0;
+const float kDefaultResonance = 0;
+
+const int kLowpassFilter = 1;
+const int kHighpassFilter = 2;
+
+
+	// Factory presets
+static const int kPreset_One = 0;
+static const int kPreset_Two = 1;
+static const int kNumberPresets = 2;
+
+static AUPreset kPresets[kNumberPresets] =
+{
+	{ kPreset_One, CFSTR("Preset One") },
+	{ kPreset_Two, CFSTR("Preset Two") }
+};
+
+static const int kPresetDefault = kPreset_One;
+static const int kPresetDefaultIndex = 0;
