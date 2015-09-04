@@ -36,6 +36,10 @@ public:
 											AudioUnitElement 		inElement,
 											void 					* outData );
 	
+	ComponentResult 			GetParameterValueStrings(AudioUnitScope inScope,
+														 AudioUnitParameterID inParameterID,
+														 CFArrayRef *outStrings);
+
 	
 	virtual OSStatus			GetParameterInfo(AudioUnitScope			inScope,
 												 AudioUnitParameterID	inParameterID,
@@ -92,6 +96,7 @@ enum
 static CFStringRef kCutoffFreq_Name = CFSTR("Cutoff Frequency");
 static CFStringRef kResonance_Name = CFSTR("Resonance");
 static CFStringRef kFilterType_Name = CFSTR("Filter Type");
+static CFStringRef kLowpass_Name = CFSTR("Lowpass Filter");
 static CFStringRef kHighpass_Name = CFSTR("Highpass Filter");
 
 

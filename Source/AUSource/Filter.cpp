@@ -118,6 +118,31 @@ OSStatus Filter::GetParameterInfo(	AudioUnitScope			inScope,
 	return result;
 }
 
+#pragma mark ____GetParameterValueStrings
+
+/*
+ *TremoloUnit::GetParameterValueStrings()
+ */
+ComponentResult Filter::GetParameterValueStrings(AudioUnitScope inScope, AudioUnitParameterID inParameterID,
+													  CFArrayRef *outStrings)
+{
+	if((inScope == kAudioUnitScope_Global) && (inParameterID == kFilterParam_FilterType))
+	{
+		if (outStrings == NULL)
+		{
+			return noErr;
+		}
+		
+		CFStringRef strings[] = { kLowpass_Name, kHighpass_Name };
+		
+		*outStrings = CFArrayCreate(NULL, (const void **) strings, (sizeof(strings) / sizeof(strings[0])), NULL);
+		
+		return noErr;
+	}
+	
+	return kAudioUnitErr_InvalidParameter;
+}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark ____Properties
 
