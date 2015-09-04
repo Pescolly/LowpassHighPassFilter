@@ -133,7 +133,7 @@ ComponentResult Filter::GetParameterValueStrings(AudioUnitScope inScope, AudioUn
 			return noErr;
 		}
 		
-		CFStringRef strings[] = { kLowpass_Name, kHighpass_Name };
+		CFStringRef strings[] = { kLowpass_Name, kHighpass_Name, kBandpass_Name, kResonator_Name };
 		
 		*outStrings = CFArrayCreate(NULL, (const void **) strings, (sizeof(strings) / sizeof(strings[0])), NULL);
 		

@@ -71,6 +71,8 @@
 		8D01CCCA0486CAD60068D4B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		C06501831B917A800042D134 /* FilterKernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C06501811B917A800042D134 /* FilterKernel.cpp */; };
 		C06501841B917A800042D134 /* FilterKernel.h in Headers */ = {isa = PBXBuildFile; fileRef = C06501821B917A800042D134 /* FilterKernel.h */; };
+		C065018A1B998C560042D134 /* FilterTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C06501881B998C560042D134 /* FilterTypes.cpp */; };
+		C065018B1B998C560042D134 /* FilterTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C06501891B998C560042D134 /* FilterTypes.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -299,6 +301,8 @@
 		8D01CCD20486CAD60068D4B7 /* LowpassHighpassFilter.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LowpassHighpassFilter.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06501811B917A800042D134 /* FilterKernel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilterKernel.cpp; sourceTree = "<group>"; };
 		C06501821B917A800042D134 /* FilterKernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterKernel.h; sourceTree = "<group>"; };
+		C06501881B998C560042D134 /* FilterTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilterTypes.cpp; sourceTree = "<group>"; };
+		C06501891B998C560042D134 /* FilterTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTypes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -684,6 +688,8 @@
 				8BA05A670720730100365D66 /* Filter.exp */,
 				C06501811B917A800042D134 /* FilterKernel.cpp */,
 				C06501821B917A800042D134 /* FilterKernel.h */,
+				C06501881B998C560042D134 /* FilterTypes.cpp */,
+				C06501891B998C560042D134 /* FilterTypes.h */,
 				8BA05A690720730100365D66 /* FilterVersion.h */,
 			);
 			name = "AU Source";
@@ -709,6 +715,7 @@
 				62360A1F19FAC154009FC301 /* CALogMacros.h in Headers */,
 				623609BA19FAC154009FC301 /* AUEffectBase.h in Headers */,
 				623609CB19FAC154009FC301 /* AUSilentTimeout.h in Headers */,
+				C065018B1B998C560042D134 /* FilterTypes.h in Headers */,
 				62360A3419FAC154009FC301 /* CAStreamBasicDescription.h in Headers */,
 				4C56E93B0804AE2C00DE6468 /* Filter.h in Headers */,
 				62360A3C19FAC154009FC301 /* CAVectorUnitTypes.h in Headers */,
@@ -844,6 +851,7 @@
 				8BA05A6B0720730100365D66 /* Filter.cpp in Sources */,
 				6236099519FAC154009FC301 /* AUBase.cpp in Sources */,
 				623609D619FAC154009FC301 /* CAAudioChannelLayout.cpp in Sources */,
+				C065018A1B998C560042D134 /* FilterTypes.cpp in Sources */,
 				623609A219FAC154009FC301 /* ComponentBase.cpp in Sources */,
 				623609B919FAC154009FC301 /* AUEffectBase.cpp in Sources */,
 				62360A0D19FAC154009FC301 /* CADebugPrintf.cpp in Sources */,
