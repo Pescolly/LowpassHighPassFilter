@@ -71,7 +71,8 @@ protected:
 		//
 	enum
 	{
-		kAudioUnitCustomProperty_FilterFrequencyResponse = 65536
+		kAudioUnitCustomProperty_FilterFrequencyResponse = 65536,
+		kAudioUnitCustomProperty_FilterType = 65537
 	};
 
 		// We'll define our property data to be a size kNumberOfResponseFrequencies array of structs
@@ -100,6 +101,7 @@ static CFStringRef kLowpass_Name = CFSTR("Lowpass");
 static CFStringRef kHighpass_Name = CFSTR("Highpass");
 static CFStringRef kBandpass_Name = CFSTR("Bandpass");
 static CFStringRef kResonator_Name = CFSTR("Resonator");
+
 
 
 const float kMinCutoffHz = 12.0;

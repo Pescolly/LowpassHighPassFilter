@@ -14,6 +14,7 @@
 #include "AUEffectBase.h"
 #include <AudioToolbox/AudioUnitUtilities.h>
 #include "FilterVersion.h"
+#include "FilterTypes.h"
 
 #pragma mark FilterKernel
 
@@ -33,6 +34,9 @@ public:
 		// resets the filter state
 	virtual void Reset();
 	
+		//set filter type
+	void setFilterType(AudioUnitParameterValue inputParameterValue);
+	
 	void CalculateLopassParams(	double inFreq, double inResonance );
 	
 		// used by the custom property handled in the Filter class below
@@ -41,6 +45,9 @@ public:
 	
 	
 private:
+	
+	AudioUnitParameterValue parameterValue;
+	
 	
 		//high/low pass select
 	bool lowpassON;

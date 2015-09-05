@@ -9,7 +9,15 @@
 #ifndef __LowpassHighpassFilter__FilterTypes__
 #define __LowpassHighpassFilter__FilterTypes__
 
-#include <stdio.h>
+#include <AudioToolbox/AudioToolbox.h>
+
+enum AudioUnitFilterType
+{
+	kHighpassFilterType = 909,
+	kLowpassFilterType = 606,
+	kResonantFilterType = 303,
+	kBandpassFilterType = 505
+};
 
 class FilterTypes
 {

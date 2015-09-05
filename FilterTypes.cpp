@@ -32,7 +32,7 @@ float FilterTypes::lowpassFilter(float *inputBuffer, float freq, float *delay, i
 	return *inputBuffer;
 }
 
-float highpassFilter(float *inputBuffer, float freq, float *delay, int bufferSize, float sampleRate)
+float FilterTypes::highpassFilter(float *inputBuffer, float freq, float *delay, int bufferSize, float sampleRate)
 {
 	double cos_theta, coEfficient;
 	cos_theta = 2.0 - cos(2 * M_PI * freq / sampleRate);
@@ -47,10 +47,9 @@ float highpassFilter(float *inputBuffer, float freq, float *delay, int bufferSiz
 	return *inputBuffer;
 }
 
-float bandpassFilter(float *inputBuffer, float freq, float bandwidth, float *delay, int bufferSize, float sampleRate)
+float FilterTypes::bandpassFilter(float *inputBuffer, float freq, float bandwidth, float *delay, int bufferSize, float sampleRate)
 {
 	double filterDiameter, filterRadius, filterRadiusSquared, cos_theta, scale, width;
-	
 	filterRadius = 1.0 - M_PI * (bandwidth / sampleRate);
 	filterDiameter = 2 * (filterRadius);
 	filterRadiusSquared = pow(filterRadius, 2);
@@ -68,7 +67,7 @@ float bandpassFilter(float *inputBuffer, float freq, float bandwidth, float *del
 	return *inputBuffer;
 }
 
-float resonator(float *inputBuffer, float freq, float bandwidth, float *delay, int bufferSize, float sampleRate)
+float FilterTypes::resonator(float *inputBuffer, float freq, float bandwidth, float *delay, int bufferSize, float sampleRate)
 {
 	
 }

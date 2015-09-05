@@ -104,6 +104,16 @@ double FilterKernel::GetFrequencyResponse( double inFreq /* in Hertz */ )
 	return response;
 }
 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//	FilterKernel::setFilterType(AudioUnitParameterValue inputParameterValue)
+	//
+	//		set filter type
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+void FilterKernel::setFilterType(AudioUnitParameterValue inputParameterValue)
+{
+	parameterValue = inputParameterValue;
+}
 
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,13 +125,27 @@ double FilterKernel::GetFrequencyResponse( double inFreq /* in Hertz */ )
 void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 inFramesToProcess,
 						   UInt32 inNumChannels, bool &ioSilence)
 {
-		//determine if low pass filter is selected else use high pass filter
-	if (lowpassON)
+		//create filter selection and filter function objects
+	AudioUnitFilterType selectedFilter;
+	FilterTypes filters;
+	
+		//determine what filter is selected and pass buffer and arguments in
+	switch (selectedFilter)
 	{
-		
-	}
-	else
-	{
-		
+		case kLowpassFilterType:
+				//			filters.lowpassFilter(<#float *sig#>, <#float freq#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
+			break;
+		case kHighpassFilterType:
+				//		filters.highpassFilter(<#float *sig#>, <#float freq#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
+			break;
+		case kBandpassFilterType:
+				///			filters.bandpassFilter(<#float *sig#>, <#float freq#>, <#float bandwidth#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
+			break;
+		case kResonantFilterType:
+				//			filters.resonator(<#float *sig#>, <#float freq#>, <#float bandwidth#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
+			break;
+			
+  	default:
+			break;
 	}
 }

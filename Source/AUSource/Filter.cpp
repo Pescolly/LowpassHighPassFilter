@@ -185,10 +185,11 @@ OSStatus Filter::GetProperty (AudioUnitPropertyID inID,
 							  AudioUnitElement inElement,
 							  void *outData)
 {
-/*	if (inScope == kAudioUnitScope_Global)
+	if (inScope == kAudioUnitScope_Global)
 	{
 		switch (inID)
 		{
+				/*
 			// This property allows the host application to find the UI associated with this
 			// AudioUnit
 			//
@@ -212,18 +213,47 @@ OSStatus Filter::GetProperty (AudioUnitPropertyID inID,
 				
 				return noErr;
 			}
-
+*/
 			// This is our custom property which reports the current frequency response curve
 			//
+			case kAudioUnitCustomProperty_FilterType:
+			{
+				if(inScope != kAudioUnitScope_Global)
+					return kAudioUnitErr_InvalidScope;
+				
+				if(!IsInitialized())
+					return kAudioUnitErr_Uninitialized;
+			
+
+				AudioUnitParameterValue selectedFilterParameter = GetParameter(kFilterParam_FilterType);
+				
+				switch (selectedFilterParameter)
+				{
+					case :
+						<#statements#>
+						break;
+						
+					default:
+						break;
+				}
+				
+				FilterKernel *filterKernel = dynamic_cast<FilterKernel*>(mKernelList[0]);
+				
+				
+				filterKernel->setFilterType(<#AudioUnitParameterValue inputParameterValue#>)
+			}
+				
 			case kAudioUnitCustomProperty_FilterFrequencyResponse:
 			{
-				if(inScope != kAudioUnitScope_Global) 	return kAudioUnitErr_InvalidScope;
+				if(inScope != kAudioUnitScope_Global)
+					return kAudioUnitErr_InvalidScope;
 
 				// the kernels are only created if we are initialized
 				// since we're using the kernels to get the curve info, let
 				// the caller know we can't do it if we're un-initialized
 				// the UI should check for the error and not draw the curve in this case
-				if(!IsInitialized() ) return kAudioUnitErr_Uninitialized;
+				if(!IsInitialized())
+					return kAudioUnitErr_Uninitialized;
 
 				FrequencyResponse *freqResponseTable = ((FrequencyResponse*)outData);
 
@@ -254,7 +284,7 @@ OSStatus Filter::GetProperty (AudioUnitPropertyID inID,
 			}
 		}
 	}
-*/	
+	
 	// if we've gotten this far, handles the standard properties
 	return AUEffectBase::GetProperty (inID, inScope, inElement, outData);
 }
