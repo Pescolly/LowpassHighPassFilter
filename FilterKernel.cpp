@@ -126,26 +126,29 @@ void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 in
 						   UInt32 inNumChannels, bool &ioSilence)
 {
 		//create filter selection and filter function objects
-	AudioUnitFilterType selectedFilter;
+	int selectedFilterType = (int) GetParameter(kFilterParam_FilterType);
+
+		
 	FilterTypes filters;
 	
 		//determine what filter is selected and pass buffer and arguments in
-	switch (selectedFilter)
+	switch (selectedFilterType)
 	{
-		case kLowpassFilterType:
-				//			filters.lowpassFilter(<#float *sig#>, <#float freq#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
+		case kLowpassFilter:
+				//				filters.lowpassFilter(<#float *sig#>, <#float freq#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
 			break;
-		case kHighpassFilterType:
+		case kHighpassFilter:
 				//		filters.highpassFilter(<#float *sig#>, <#float freq#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
 			break;
-		case kBandpassFilterType:
+		case kBandpassFilter:
 				///			filters.bandpassFilter(<#float *sig#>, <#float freq#>, <#float bandwidth#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
 			break;
-		case kResonantFilterType:
+		case kResonatorFilter:
 				//			filters.resonator(<#float *sig#>, <#float freq#>, <#float bandwidth#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
 			break;
 			
   	default:
 			break;
 	}
+	
 }

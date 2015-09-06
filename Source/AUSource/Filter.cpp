@@ -102,6 +102,7 @@ OSStatus Filter::GetParameterInfo(	AudioUnitScope			inScope,
 				outParameterInfo.unit = kAudioUnitParameterUnit_Indexed;
 				outParameterInfo.minValue = kLowpassFilter;
 				outParameterInfo.maxValue = kHighpassFilter;
+				
 				outParameterInfo.defaultValue = kLowpassFilter;
 				break;
 				
@@ -160,12 +161,8 @@ OSStatus Filter::GetPropertyInfo (	AudioUnitPropertyID				inID,
 	{
 		switch (inID)
 		{
-			case kAudioUnitProperty_CocoaUI:
-				outWritable = false;
-				outDataSize = sizeof (AudioUnitCocoaViewInfo);
-				return noErr;
-			
-			case kAudioUnitCustomProperty_FilterFrequencyResponse:	// our custom property
+			// our custom property to determine frequency response of filter
+			case kAudioUnitCustomProperty_FilterFrequencyResponse:
 				if(inScope != kAudioUnitScope_Global ) return kAudioUnitErr_InvalidScope;
 				outDataSize = kNumberOfResponseFrequencies * sizeof(FrequencyResponse);
 				outWritable = false;
@@ -188,61 +185,7 @@ OSStatus Filter::GetProperty (AudioUnitPropertyID inID,
 	if (inScope == kAudioUnitScope_Global)
 	{
 		switch (inID)
-		{
-				/*
-			// This property allows the host application to find the UI associated with this
-			// AudioUnit
-			//
-			case kAudioUnitProperty_CocoaUI:
-			{
-				// Look for a resource in the main bundle by name and type.
-				CFBundleRef bundle = CFBundleGetBundleWithIdentifier( CFSTR("com.DEMO.audiounit.Filter") );
-				
-				if (bundle == NULL) return fnfErr;
-                
-				CFURLRef bundleURL = CFBundleCopyResourceURL( bundle, 
-                    CFSTR("CocoaFilterView"),	// this is the name of the cocoa bundle as specified in the CocoaViewFactory.plist
-                    CFSTR("bundle"),			// this is the extension of the cocoa bundle
-                    NULL);
-                
-                if (bundleURL == NULL) return fnfErr;
-                
-				CFStringRef className = CFSTR("DEMOFilter_ViewFactory");	// name of the main class that implements the AUCocoaUIBase protocol
-				AudioUnitCocoaViewInfo cocoaInfo = { bundleURL, { className } };
-				*((AudioUnitCocoaViewInfo *)outData) = cocoaInfo;
-				
-				return noErr;
-			}
-*/
-			// This is our custom property which reports the current frequency response curve
-			//
-			case kAudioUnitCustomProperty_FilterType:
-			{
-				if(inScope != kAudioUnitScope_Global)
-					return kAudioUnitErr_InvalidScope;
-				
-				if(!IsInitialized())
-					return kAudioUnitErr_Uninitialized;
-			
-
-				AudioUnitParameterValue selectedFilterParameter = GetParameter(kFilterParam_FilterType);
-				
-				switch (selectedFilterParameter)
-				{
-					case :
-						<#statements#>
-						break;
-						
-					default:
-						break;
-				}
-				
-				FilterKernel *filterKernel = dynamic_cast<FilterKernel*>(mKernelList[0]);
-				
-				
-				filterKernel->setFilterType(<#AudioUnitParameterValue inputParameterValue#>)
-			}
-				
+		{				
 			case kAudioUnitCustomProperty_FilterFrequencyResponse:
 			{
 				if(inScope != kAudioUnitScope_Global)

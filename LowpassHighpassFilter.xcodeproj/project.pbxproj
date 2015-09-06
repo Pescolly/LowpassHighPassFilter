@@ -303,6 +303,7 @@
 		C06501821B917A800042D134 /* FilterKernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterKernel.h; sourceTree = "<group>"; };
 		C06501881B998C560042D134 /* FilterTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilterTypes.cpp; sourceTree = "<group>"; };
 		C06501891B998C560042D134 /* FilterTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTypes.h; sourceTree = "<group>"; };
+		C08FEADA1B9C1F950064EE57 /* FilterParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterParameters.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,6 +689,7 @@
 				8BA05A670720730100365D66 /* Filter.exp */,
 				C06501811B917A800042D134 /* FilterKernel.cpp */,
 				C06501821B917A800042D134 /* FilterKernel.h */,
+				C08FEADA1B9C1F950064EE57 /* FilterParameters.h */,
 				C06501881B998C560042D134 /* FilterTypes.cpp */,
 				C06501891B998C560042D134 /* FilterTypes.h */,
 				8BA05A690720730100365D66 /* FilterVersion.h */,

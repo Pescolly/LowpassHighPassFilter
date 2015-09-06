@@ -11,21 +11,15 @@
 
 #include <AudioToolbox/AudioToolbox.h>
 
-enum AudioUnitFilterType
-{
-	kHighpassFilterType = 909,
-	kLowpassFilterType = 606,
-	kResonantFilterType = 303,
-	kBandpassFilterType = 505
-};
+
 
 class FilterTypes
 {
 public:
-	float lowpassFilter(float *sig, float freq, float *del, int vecsize, float sampleRate);
-	float highpassFilter(float *sig, float freq, float *del, int vecsize, float sampleRate);
-	float bandpassFilter(float *sig, float freq, float bandwidth, float *del, int vecsize, float sampleRate);
-	float resonator(float *sig, float freq, float bandwidth, float *del, int vecsize, float sampleRate);
+	float lowpassFilter(float *inputBuffer, float freq, float *delay, int bufferSize, float sampleRate);
+	float highpassFilter(float *inputBuffer, float freq, float *delay, int bufferSize, float sampleRate);
+	float bandpassFilter(float *inputBuffer, float freq, float bandwidth, float *delay, int bufferSize, float sampleRate);
+	float resonator(float *inputBuffer, float freq, float bandwidth, float *delay, int bufferSize, float sampleRate);
 	
 };
 

@@ -15,6 +15,7 @@
 #include <AudioToolbox/AudioUnitUtilities.h>
 #include "FilterVersion.h"
 #include "FilterTypes.h"
+#include "FilterParameters.h"
 
 #pragma mark FilterKernel
 

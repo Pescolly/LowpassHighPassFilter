@@ -11,7 +11,7 @@
 #include <AudioToolbox/AudioUnitUtilities.h>
 #include "FilterVersion.h"
 #include "FilterKernel.h"
-
+#include "FilterParameters.h"
 
 class Filter : public AUEffectBase
 {
@@ -86,32 +86,13 @@ protected:
 	} FrequencyResponse;
 };
 
-enum
-{
-	kFilterParam_CutoffFrequency = 0,
-	kFilterParam_Resonance = 1,
-	kFilterParam_FilterType = 2
-};
-
-
-static CFStringRef kCutoffFreq_Name = CFSTR("Cutoff Frequency");
-static CFStringRef kResonance_Name = CFSTR("Resonance");
-static CFStringRef kFilterType_Name = CFSTR("Filter Type");
-static CFStringRef kLowpass_Name = CFSTR("Lowpass");
-static CFStringRef kHighpass_Name = CFSTR("Highpass");
-static CFStringRef kBandpass_Name = CFSTR("Bandpass");
-static CFStringRef kResonator_Name = CFSTR("Resonator");
-
-
-
 const float kMinCutoffHz = 12.0;
 const float kDefaultCutoff = 1000.0;
 const float kMinResonance = -20.0;
 const float kMaxResonance = 20.0;
 const float kDefaultResonance = 0;
 
-const int kLowpassFilter = 1;
-const int kHighpassFilter = 2;
+
 
 
 	// Factory presets
