@@ -8,10 +8,6 @@
 
 #include "FilterKernel.h"
 
-	//debugging headers
-#include <fstream>
-
-
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark ____FilterKernel
 
@@ -129,14 +125,9 @@ void FilterKernel::setFilterType(AudioUnitParameterValue inputParameterValue)
 void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 inFramesToProcess,
 						   UInt32 inNumChannels, bool &ioSilence)
 {
-	std::fstream myfile;
-	myfile.open ("/Users/armen/Desktop/debugFile.txt");
-	myfile << "starting processing" << std::endl;
-	myfile.close();
-	
+
 	if (!ioSilence)
 	{
-		myfile << "!ioSilence" << std::endl;
 			//create filter selection and filter function objects
 		int selectedFilterType = (int) GetParameter(kFilterParam_FilterType);
 		int cutoffFrequency = GetParameter(kFilterParam_CutoffFrequency);
@@ -150,10 +141,10 @@ void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 in
 		switch (selectedFilterType)
 		{
 			case kLowpassFilter:
-				myfile << "lowpass filter case" << std::endl;
-
-				inDestP = filters.lowpassFilter(inputBuffer, cutoffFrequency, inFramesToProcess, sampleRate);
+			{
+				filters.lowpassFilter(inputBuffer, inDestP, cutoffFrequency, inFramesToProcess, sampleRate);
 				break;
+			}
 			case kHighpassFilter:
 					//		filters.highpassFilter(<#float *sig#>, <#float freq#>, <#float *del#>, <#int vecsize#>, <#float sampleRate#>)
 				break;

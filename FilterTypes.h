@@ -16,7 +16,7 @@
 class FilterTypes
 {
 public:
-	Float32* lowpassFilter(const Float32 *inputBuffer, float freq, int bufferSize, float sampleRate);
+	void lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, float freq, int bufferSize, float sampleRate);
 	float highpassFilter(float *inputBuffer, float freq, int bufferSize, float sampleRate);
 	float bandpassFilter(float *inputBuffer, float freq, float bandwidth, int bufferSize, float sampleRate);
 	float resonator(float *inputBuffer, float freq, float bandwidth, int bufferSize, float sampleRate);

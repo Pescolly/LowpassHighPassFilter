@@ -7,8 +7,6 @@
 //
 
 #include "FilterTypes.h"
-	//debugging headers
-#include <fstream>
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//	FilterTypes
@@ -19,28 +17,18 @@
 
 	//TODO: Move delay to local variable?
 
-Float32* FilterTypes::lowpassFilter(const Float32 *inputBuffer, float freq, int bufferSize, float sampleRate)
+void FilterTypes::lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, float freq, int bufferSize, float sampleRate)
 {
-	std::fstream myfile;
-	myfile.open ("/Users/armen/Desktop/debugFile.txt");
-	
 	double cos_theta, coEfficient;
 	cos_theta = 2.0 - cos(2 * M_PI * freq / sampleRate);
 	coEfficient = sqrt(pow(cos_theta,2) - 1.0) - cos_theta;
 	float delay[2] = {0.f, 0.f};
-	Float32 *outputBuffer= new Float32[bufferSize];
-	
+
 	for (int i = 0; i < bufferSize; i++)
 	{
-		outputBuffer[i] = 1;//(float) (inputBuffer[i] * (1 + coEfficient) - *delay * coEfficient);
+		outputBuffer[i] = (float) (inputBuffer[i] * (1 + coEfficient) - *delay * coEfficient);
 		*delay = outputBuffer[i];
-
-		myfile << "input buffer: " << inputBuffer[i] << std::endl << "outputbuffer: " << outputBuffer[i] << std::endl;
-		
-		
 	}
-	myfile.close();
-	return outputBuffer;
 }
 
 float FilterTypes::highpassFilter(float *inputBuffer, float freq, int bufferSize, float sampleRate)
