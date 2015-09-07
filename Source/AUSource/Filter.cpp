@@ -101,7 +101,7 @@ OSStatus Filter::GetParameterInfo(	AudioUnitScope			inScope,
 				AUBase::FillInParameterName(outParameterInfo, kFilterType_Name, false);
 				outParameterInfo.unit = kAudioUnitParameterUnit_Indexed;
 				outParameterInfo.minValue = kLowpassFilter;
-				outParameterInfo.maxValue = kHighpassFilter;
+				outParameterInfo.maxValue = kBandpassFilter;
 				
 				outParameterInfo.defaultValue = kLowpassFilter;
 				break;

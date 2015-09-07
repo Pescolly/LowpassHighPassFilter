@@ -32,10 +32,10 @@ enum
 	kFilterParam_CutoffFrequency = 0,
 	kFilterParam_Resonance = 1,
 	kFilterParam_FilterType = 2,
-	kLowpassFilter = 303,
-	kHighpassFilter = 505,
-	kResonatorFilter = 606,
-	kBandpassFilter = 909
+	kLowpassFilter = 3,
+	kHighpassFilter = 4,
+	kResonatorFilter = 5,
+	kBandpassFilter = 6
 };
 
 
