@@ -31,11 +31,11 @@ Filter::Filter(AudioUnit component) : AUEffectBase(component)
 	// these calls have the effect both of defining the parameters for the first time
 	// and assigning their initial values
 	//
-	SetParameter(kFilterParam_CutoffFrequency, kDefaultCutoff );
+	SetParameter(kFilterParam_ResonantFrequency, kDefaultCutoff );
 	SetParameter(kFilterParam_Resonance, kDefaultResonance );
 	SetParameter(kFilterParam_FilterType, kLowpassFilter);
 	
-	// kFilterParam_CutoffFrequency max value depends on sample-rate
+	// kFilterParam_ResonantFrequency max value depends on sample-rate
 	SetParamHasSampleRateDependency(true );
 }
 
@@ -78,7 +78,7 @@ OSStatus Filter::GetParameterInfo(	AudioUnitScope			inScope,
 	{
 		switch(inParameterID)
 		{
-			case kFilterParam_CutoffFrequency:
+			case kFilterParam_ResonantFrequency:
 				AUBase::FillInParameterName (outParameterInfo, kCutoffFreq_Name, false);
 				outParameterInfo.unit = kAudioUnitParameterUnit_Hertz;
 				outParameterInfo.minValue = kMinCutoffHz;
@@ -206,7 +206,7 @@ OSStatus Filter::GetProperty (AudioUnitPropertyID inID,
 				FilterKernel *filterKernel = dynamic_cast<FilterKernel*>(mKernelList[0]);
 
 
-				double cutoff = GetParameter(kFilterParam_CutoffFrequency);
+				double cutoff = GetParameter(kFilterParam_ResonantFrequency);
 				double resonance = GetParameter(kFilterParam_Resonance );
 
 				float srate = GetSampleRate();
@@ -277,11 +277,11 @@ OSStatus Filter::NewFactoryPresetSet (const AUPreset & inNewFactoryPreset)
 			switch(chosenPreset)
 			{
 				case kPreset_One:
-					SetParameter(kFilterParam_CutoffFrequency, 200.0 );
+					SetParameter(kFilterParam_ResonantFrequency, 200.0 );
 					SetParameter(kFilterParam_Resonance, -5.0 );
 					break;
 				case kPreset_Two:
-					SetParameter(kFilterParam_CutoffFrequency, 1000.0 );
+					SetParameter(kFilterParam_ResonantFrequency, 1000.0 );
 					SetParameter(kFilterParam_Resonance, 10.0 );
 					break;
 			}

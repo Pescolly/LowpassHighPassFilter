@@ -8,6 +8,8 @@
 
 #include "FilterKernel.h"
 
+using namespace std;
+
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark ____FilterKernel
 
@@ -130,7 +132,7 @@ void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 in
 	{
 			//create filter selection and filter function objects
 		int selectedFilterType = (int) GetParameter(kFilterParam_FilterType);
-		int cutoffFrequency = GetParameter(kFilterParam_CutoffFrequency);
+		int resonantFrequency = GetParameter(kFilterParam_ResonantFrequency);
 		int resonance = GetParameter(kFilterParam_Resonance);
 		float sampleRate = GetSampleRate();
 		const Float32 *inputBuffer = inSourceP;
@@ -142,7 +144,8 @@ void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 in
 		{
 			case kLowpassFilter:
 			{
-				filters.lowpassFilter(inputBuffer, inDestP, cutoffFrequency, inFramesToProcess, sampleRate);
+				vector<double> coefficients = filters.getFilterCoefficients(resonantFrequency, resonance, sampleRate, selectedFilterType); //get coefficients
+				filters.lowpassFilter(inputBuffer, inDestP, inFramesToProcess, coefficients);
 				break;
 			}
 			case kHighpassFilter:
