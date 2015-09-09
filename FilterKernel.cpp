@@ -127,14 +127,13 @@ void FilterKernel::setFilterType(AudioUnitParameterValue inputParameterValue)
 void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 inFramesToProcess,
 						   UInt32 inNumChannels, bool &ioSilence)
 {
-
 	if (!ioSilence)
 	{
 			//create filter selection and filter function objects
 		int selectedFilterType = (int) GetParameter(kFilterParam_FilterType);
-		int resonantFrequency = GetParameter(kFilterParam_ResonantFrequency);
-		int resonance = GetParameter(kFilterParam_Resonance);
-		float sampleRate = GetSampleRate();
+		Float32 resonantFrequency = GetParameter(kFilterParam_ResonantFrequency);
+		Float32 resonance = GetParameter(kFilterParam_Resonance);
+		Float64 sampleRate = GetSampleRate();
 		const Float32 *inputBuffer = inSourceP;
 		
 		FilterTypes filters;
@@ -144,8 +143,8 @@ void FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 in
 		{
 			case kLowpassFilter:
 			{
-				vector<double> coefficients = filters.getFilterCoefficients(resonantFrequency, resonance, sampleRate, selectedFilterType); //get coefficients
-				filters.lowpassFilter(inputBuffer, inDestP, inFramesToProcess, coefficients);
+					vector<Float32> coefficients = filters.getFilterCoefficients(resonantFrequency, resonance, sampleRate, selectedFilterType); //get coefficients
+					filters.lowpassFilter(inputBuffer, inDestP, inFramesToProcess, coefficients); //call LPF
 				break;
 			}
 			case kHighpassFilter:

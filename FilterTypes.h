@@ -13,13 +13,11 @@
 #include "FilterParameters.h"
 #include <vector>
 
-#define A0 0
-#define A1 1
-#define A2 2
-#define B1 3
-#define B2 4
-
-using namespace std;
+const int A0 = 0;
+const int A1 = 1;
+const int A2 = 2;
+const int B1 = 3;
+const int B2 = 4;
 
 class FilterTypes
 {
@@ -28,17 +26,19 @@ public:
 	 *	Filter types
 	 *	Algorithms derived from the formula give in The Audio Programming Book, pg. 484
 	 */
-	void lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, vector<double> coefficients);
-	float highpassFilter(float *inputBuffer, float resonantFrequency, float resonance, int bufferSize, float sampleRate);
-	float bandpassFilter(float *inputBuffer, float resonantFrequency, float bandwidth, int bufferSize, float sampleRate);
-	float resonator(float *inputBuffer, float resonantFrequency, float bandwidth, int bufferSize, float sampleRate);
+	void lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
+	float highpassFilter(Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
+	float bandpassFilter(Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
+	float resonator(Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
+	
+	
 	
 	/*
 	 *	Filter helper functions
 	 */
 	
 		//get from second-order butterworth coefficients table on pg. 484
-	vector<double> getFilterCoefficients(float resonantFrequency, float resonance, float sampleRate, int selectedFilterType);
+	std::vector<Float32> getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType);
 	
 };
 

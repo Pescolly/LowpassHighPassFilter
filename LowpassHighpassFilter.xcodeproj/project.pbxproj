@@ -73,6 +73,8 @@
 		C06501841B917A800042D134 /* FilterKernel.h in Headers */ = {isa = PBXBuildFile; fileRef = C06501821B917A800042D134 /* FilterKernel.h */; };
 		C065018A1B998C560042D134 /* FilterTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C06501881B998C560042D134 /* FilterTypes.cpp */; };
 		C065018B1B998C560042D134 /* FilterTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C06501891B998C560042D134 /* FilterTypes.h */; };
+		C0B602C01BA00BE6004F18BB /* FilterParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = C08FEADA1B9C1F950064EE57 /* FilterParameters.h */; };
+		C0B602C41BA01598004F18BB /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B602C31BA01598004F18BB /* libstdc++.6.0.9.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -304,6 +306,7 @@
 		C06501881B998C560042D134 /* FilterTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilterTypes.cpp; sourceTree = "<group>"; };
 		C06501891B998C560042D134 /* FilterTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTypes.h; sourceTree = "<group>"; };
 		C08FEADA1B9C1F950064EE57 /* FilterParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterParameters.h; sourceTree = "<group>"; };
+		C0B602C31BA01598004F18BB /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B602C41BA01598004F18BB /* libstdc++.6.0.9.dylib in Frameworks */,
 				627E8BA219FADB76004E5024 /* CoreServices.framework in Frameworks */,
 				627E8BA119FADB76004E5024 /* Cocoa.framework in Frameworks */,
 				627E8BA419FADB76004E5024 /* AudioToolbox.framework in Frameworks */,
@@ -336,6 +340,7 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C0B602C31BA01598004F18BB /* libstdc++.6.0.9.dylib */,
 				627E8BA019FADB76004E5024 /* AudioToolbox.framework */,
 				627E8B9F19FADB76004E5024 /* AudioUnit.framework */,
 				627E8B9D19FADB76004E5024 /* Cocoa.framework */,
@@ -711,15 +716,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C56E93B0804AE2C00DE6468 /* Filter.h in Headers */,
+				C06501841B917A800042D134 /* FilterKernel.h in Headers */,
+				C0B602C01BA00BE6004F18BB /* FilterParameters.h in Headers */,
+				C065018B1B998C560042D134 /* FilterTypes.h in Headers */,
 				6236099C19FAC154009FC301 /* AUOutputElement.h in Headers */,
 				6236099A19FAC154009FC301 /* AUInputElement.h in Headers */,
 				62360A2A19FAC154009FC301 /* CAReferenceCounted.h in Headers */,
 				62360A1F19FAC154009FC301 /* CALogMacros.h in Headers */,
 				623609BA19FAC154009FC301 /* AUEffectBase.h in Headers */,
 				623609CB19FAC154009FC301 /* AUSilentTimeout.h in Headers */,
-				C065018B1B998C560042D134 /* FilterTypes.h in Headers */,
 				62360A3419FAC154009FC301 /* CAStreamBasicDescription.h in Headers */,
-				4C56E93B0804AE2C00DE6468 /* Filter.h in Headers */,
 				62360A3C19FAC154009FC301 /* CAVectorUnitTypes.h in Headers */,
 				8BA05A6E0720730100365D66 /* FilterVersion.h in Headers */,
 				62360A1E19FAC154009FC301 /* CAHostTimeBase.h in Headers */,
@@ -738,7 +745,6 @@
 				623609A319FAC154009FC301 /* ComponentBase.h in Headers */,
 				623609D219FAC154009FC301 /* CAAtomic.h in Headers */,
 				62360A3719FAC154009FC301 /* CAThreadSafeList.h in Headers */,
-				C06501841B917A800042D134 /* FilterKernel.h in Headers */,
 				62360A0C19FAC154009FC301 /* CADebugMacros.h in Headers */,
 				623608A919FAC13D009FC301 /* LowpassHighpassFilter_Prefix.pch in Headers */,
 				6236099E19FAC154009FC301 /* AUPlugInDispatch.h in Headers */,
@@ -841,7 +847,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA05A6B0720730100365D66 /* Filter.cpp in Sources */,
 				C06501831B917A800042D134 /* FilterKernel.cpp in Sources */,
+				C065018A1B998C560042D134 /* FilterTypes.cpp in Sources */,
 				6236099919FAC154009FC301 /* AUInputElement.cpp in Sources */,
 				62360A0919FAC154009FC301 /* CADebugger.cpp in Sources */,
 				62360A3F19FAC154009FC301 /* CAXException.cpp in Sources */,
@@ -850,10 +858,8 @@
 				623609A019FAC154009FC301 /* AUScopeElement.cpp in Sources */,
 				62360A3319FAC154009FC301 /* CAStreamBasicDescription.cpp in Sources */,
 				623609ED19FAC154009FC301 /* CABufferList.cpp in Sources */,
-				8BA05A6B0720730100365D66 /* Filter.cpp in Sources */,
 				6236099519FAC154009FC301 /* AUBase.cpp in Sources */,
 				623609D619FAC154009FC301 /* CAAudioChannelLayout.cpp in Sources */,
-				C065018A1B998C560042D134 /* FilterTypes.cpp in Sources */,
 				623609A219FAC154009FC301 /* ComponentBase.cpp in Sources */,
 				623609B919FAC154009FC301 /* AUEffectBase.cpp in Sources */,
 				62360A0D19FAC154009FC301 /* CADebugPrintf.cpp in Sources */,
@@ -986,6 +992,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
@@ -1024,6 +1031,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = YES;
+				VALID_ARCHS = x86_64;
 			};
 			name = Development;
 		};
@@ -1032,6 +1040,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
@@ -1067,6 +1076,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = YES;
+				VALID_ARCHS = x86_64;
 			};
 			name = Deployment;
 		};
@@ -1075,6 +1085,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
@@ -1108,6 +1119,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = YES;
+				VALID_ARCHS = x86_64;
 			};
 			name = Default;
 		};

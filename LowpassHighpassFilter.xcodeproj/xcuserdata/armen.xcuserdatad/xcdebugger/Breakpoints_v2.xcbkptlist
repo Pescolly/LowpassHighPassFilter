@@ -14,9 +14,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "FilterTypes::bandpassFilter(float *inputBuffer, float resonantFrequency, float bandwidth, int bufferSize, float sampleRate)"
-            landmarkType = "5">
+            endingLineNumber = "64">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -61,7 +59,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "FilterTypes::highpassFilter(float *inputBuffer, float resonantFrequency, float resonance, int bufferSize, float sampleRate)"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -109,7 +107,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
             endingLineNumber = "33"
-            landmarkName = "FilterTypes::lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, vector&lt;double&gt; coefficients)"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -125,7 +123,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "FilterTypes::highpassFilter(float *inputBuffer, float resonantFrequency, float resonance, int bufferSize, float sampleRate)"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -140,9 +138,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "FilterTypes::getFilterCoefficients(float resonantFrequency, float resonance, float sampleRate, int selectedFilterType)"
-            landmarkType = "5">
+            endingLineNumber = "20">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -21,7 +21,7 @@ static CFStringRef kResonator_Name = CFSTR("Resonator");
 /*
 	//filter type constants
 const int kLowpassFilter = 1;
-const int kHighpassFilter = 2;
+const int kHighpassFilter = 2;	
 const int kResonatorFilter = 3;
 const int kBandpassFilter = 4;
 */

@@ -9,7 +9,6 @@
 #include "FilterTypes.h"
 
 
-using namespace std;
 
 #pragma mark FilterhelperFunctions
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,13 +18,14 @@ using namespace std;
 	//			UInt32 inNumChannels, bool &ioSilence)
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-vector<double> FilterTypes::getFilterCoefficients(float resonantFrequency, float resonance, float sampleRate, int selectedFilterType)
+std::vector<Float32> FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)
 {
 	switch (selectedFilterType)
 	{
 		case kLowpassFilter:
 		{
-			double lambda = 1 / tan((M_PI * resonantFrequency) / sampleRate);
+			double linearResonance = pow(10.0, 0.05 * - resonance);		// convert from decibels to linear
+			double lambda = linearResonance * 1 / tan((M_PI * resonantFrequency) / sampleRate);
 			double lambdaSquared = pow(lambda, 2);
 			
 			double a0 = 1 / ((1 + (2 * lambda)) + lambdaSquared);							//calculate coefficents
@@ -34,7 +34,7 @@ vector<double> FilterTypes::getFilterCoefficients(float resonantFrequency, float
 			double b1 = 2 * a0 * (1 - lambdaSquared);
 			double b2 = a0 * (1 - (2 * lambda) + lambdaSquared);
 
-			vector<double> coefficients(5, 0);											//create vector with coefficients
+			std::vector<float> coefficients(5, 0);											//create vector with coefficients
 			coefficients[A0] = a0;
 			coefficients[A1] = a1;
 			coefficients[A2] = a2;
@@ -44,7 +44,7 @@ vector<double> FilterTypes::getFilterCoefficients(float resonantFrequency, float
 			return coefficients;
 		}
 			
-		case kHighpassFilter:
+/*		case kHighpassFilter:
 			break;
 		
 		case kResonatorFilter:
@@ -52,9 +52,9 @@ vector<double> FilterTypes::getFilterCoefficients(float resonantFrequency, float
 			
 		case kBandpassFilter:
 			break;
-
+*/
 		default:
-			vector<double> empty;
+			std::vector<float> empty;
 			return empty;
 	}
 }
@@ -68,16 +68,21 @@ vector<double> FilterTypes::getFilterCoefficients(float resonantFrequency, float
 	 *
 	 */
 
-void FilterTypes::lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, vector<double> coefficients)
+void FilterTypes::lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients)
 {
 	for (int n = 2; n < bufferSize; n++)			//start at index n=2 to avoid segfault
 	{
-		outputBuffer[n] = (coefficients[A0] * inputBuffer[n]) + (coefficients[A1] * inputBuffer[n-1]) + (coefficients[A2] * inputBuffer[n-2])
-		- (coefficients[B1] * outputBuffer[n-1]) - (coefficients[B2] * outputBuffer[n-2]);		
+		outputBuffer[n] = (coefficients[A0] * inputBuffer[n])
+						+ (coefficients[A1] * inputBuffer[n-1])
+						+ (coefficients[A2] * inputBuffer[n-2])
+						- (coefficients[B1] * outputBuffer[n-1])
+						- (coefficients[B2] * outputBuffer[n-2]);
 	}
 }
 
 	//incomplete below...
+
+/*
 float FilterTypes::highpassFilter(float *inputBuffer, float resonantFrequency,  float resonance, int bufferSize, float sampleRate)
 {
 	double cos_theta, coEfficient;
@@ -134,3 +139,4 @@ float FilterTypes::resonator(float *inputBuffer, float resonantFrequency, float 
 	}
 	return *inputBuffer;
 }
+ */
