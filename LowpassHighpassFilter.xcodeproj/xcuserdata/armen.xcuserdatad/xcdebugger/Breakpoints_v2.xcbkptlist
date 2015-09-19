@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterTypes.cpp"
-            timestampString = "463299744.881807"
+            timestampString = "464346063.660726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64">
+            startingLineNumber = "86"
+            endingLineNumber = "86">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterParameters.h"
-            timestampString = "463217021.349962"
+            timestampString = "464346063.660726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37">
+            startingLineNumber = "38"
+            endingLineNumber = "38">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterKernel.cpp"
-            timestampString = "463304705.245316"
+            timestampString = "464346063.660726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 inFramesToProcess, UInt32 inNumChannels, bool &amp;ioSilence)"
             landmarkType = "5">
          </BreakpointContent>
@@ -54,12 +54,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterTypes.cpp"
-            timestampString = "463308973.543593"
+            timestampString = "464346063.660726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterKernel.cpp"
-            timestampString = "463359747.908081"
+            timestampString = "464346063.660726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "FilterKernel::Process(const Float32 *inSourceP, Float32 *inDestP, UInt32 inFramesToProcess, UInt32 inNumChannels, bool &amp;ioSilence)"
             landmarkType = "5">
          </BreakpointContent>
@@ -102,12 +102,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterTypes.cpp"
-            timestampString = "463359793.574118"
+            timestampString = "464346063.660726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -118,12 +118,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterTypes.cpp"
-            timestampString = "463359900.837879"
+            timestampString = "464346063.660726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -139,6 +139,166 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464345999.58698"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346001.167034"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346002.161029"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346016.67658"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346020.526819"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346021.200364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346026.72469"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346030.530445"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346031.30227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilterTypes.cpp"
+            timestampString = "464346034.577685"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

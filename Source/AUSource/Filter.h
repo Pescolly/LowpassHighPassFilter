@@ -71,7 +71,6 @@ protected:
 		//
 	enum
 	{
-		kAudioUnitCustomProperty_FilterFrequencyResponse = 65536,
 		kAudioUnitCustomProperty_FilterType = 65537
 	};
 
@@ -79,15 +78,11 @@ protected:
 		// The UI will pass in the desired frequency in the mFrequency field, and the Filter AU
 		// will provide the linear magnitude response of the filter in the mMagnitude field
 		// for each element in the array.
-	typedef struct FrequencyResponse
-	{
-		Float64		mFrequency;
-		Float64		mMagnitude;
-	} FrequencyResponse;
 };
 
-const float kMinCutoffHz = 12.0;
+const float kMinCutoffHz = 20.0;
 const float kDefaultCutoff = 1000.0;
+const float kMaxCutoff = 20000.0;
 const float kMinResonance = -20.0;
 const float kMaxResonance = 20.0;
 const float kDefaultResonance = 0;

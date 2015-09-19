@@ -27,9 +27,9 @@ public:
 	 *	Algorithms derived from the formula give in The Audio Programming Book, pg. 484
 	 */
 	void lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
-	float highpassFilter(Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
-	float bandpassFilter(Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
-	float resonator(Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
+	void highpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
+	void bandpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
+	void resonator(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients);
 	
 	
 	

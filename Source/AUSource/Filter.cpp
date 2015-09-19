@@ -36,7 +36,7 @@ Filter::Filter(AudioUnit component) : AUEffectBase(component)
 	SetParameter(kFilterParam_FilterType, kLowpassFilter);
 	
 	// kFilterParam_ResonantFrequency max value depends on sample-rate
-	SetParamHasSampleRateDependency(true );
+	//	SetParamHasSampleRateDependency(true );
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,7 +51,7 @@ OSStatus Filter::Initialize()
 	{
 		// in case the AU was un-initialized and parameters were changed, the view can now
 		// be made aware it needs to update the frequency response curve
-		PropertyChanged(kAudioUnitCustomProperty_FilterFrequencyResponse, kAudioUnitScope_Global, 0 );
+		//		PropertyChanged(kAudioUnitCustomProperty_FilterFrequencyResponse, kAudioUnitScope_Global, 0 );
 	}
 	
 	return result;
@@ -82,7 +82,7 @@ OSStatus Filter::GetParameterInfo(	AudioUnitScope			inScope,
 				AUBase::FillInParameterName (outParameterInfo, kCutoffFreq_Name, false);
 				outParameterInfo.unit = kAudioUnitParameterUnit_Hertz;
 				outParameterInfo.minValue = kMinCutoffHz;
-				outParameterInfo.maxValue = GetSampleRate() * 0.5;
+				outParameterInfo.maxValue = kMaxCutoff;
 				outParameterInfo.defaultValue = kDefaultCutoff;
 				outParameterInfo.flags += kAudioUnitParameterFlag_IsHighResolution;
 				outParameterInfo.flags += kAudioUnitParameterFlag_DisplayLogarithmic;
@@ -161,12 +161,6 @@ OSStatus Filter::GetPropertyInfo (	AudioUnitPropertyID				inID,
 	{
 		switch (inID)
 		{
-			// our custom property to determine frequency response of filter
-			case kAudioUnitCustomProperty_FilterFrequencyResponse:
-				if(inScope != kAudioUnitScope_Global ) return kAudioUnitErr_InvalidScope;
-				outDataSize = kNumberOfResponseFrequencies * sizeof(FrequencyResponse);
-				outWritable = false;
-				return noErr;
 		}
 	}
 	
@@ -186,46 +180,8 @@ OSStatus Filter::GetProperty (AudioUnitPropertyID inID,
 	{
 		switch (inID)
 		{				
-			case kAudioUnitCustomProperty_FilterFrequencyResponse:
-			{
-				if(inScope != kAudioUnitScope_Global)
-					return kAudioUnitErr_InvalidScope;
 
-				// the kernels are only created if we are initialized
-				// since we're using the kernels to get the curve info, let
-				// the caller know we can't do it if we're un-initialized
-				// the UI should check for the error and not draw the curve in this case
-				if(!IsInitialized())
-					return kAudioUnitErr_Uninitialized;
-
-				FrequencyResponse *freqResponseTable = ((FrequencyResponse*)outData);
-
-				// each of our filter kernel objects (one per channel) will have an identical frequency response
-				// so we arbitrarilly use the first one...
-				//
-				FilterKernel *filterKernel = dynamic_cast<FilterKernel*>(mKernelList[0]);
-
-
-				double cutoff = GetParameter(kFilterParam_ResonantFrequency);
-				double resonance = GetParameter(kFilterParam_Resonance );
-
-				float srate = GetSampleRate();
-				
-				cutoff = 2.0 * cutoff / srate;
-				if(cutoff > 0.99) cutoff = 0.99;		// clip cutoff to highest allowed by sample rate...
-
-				filterKernel->CalculateLopassParams(cutoff, resonance);
-				
-				for(int i = 0; i < kNumberOfResponseFrequencies; i++ )
-				{
-					double frequency = freqResponseTable[i].mFrequency;
-					
-					freqResponseTable[i].mMagnitude = filterKernel->GetFrequencyResponse(frequency);
-				}
-
-				return noErr;
-			}
-		}
+ 		}
 	}
 	
 	// if we've gotten this far, handles the standard properties

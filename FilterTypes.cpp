@@ -18,23 +18,25 @@
 	//			UInt32 inNumChannels, bool &ioSilence)
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-std::vector<Float32> FilterTypes::getFilterCoefficients(Float32 resonantFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)
+std::vector<Float32> FilterTypes::getFilterCoefficients(Float32 cutoffFrequency, Float32 resonance, Float64 sampleRate, int selectedFilterType)
 {
 	switch (selectedFilterType)
 	{
 		case kLowpassFilter:
 		{
-			double linearResonance = pow(10.0, 0.05 * - resonance);		// convert from decibels to linear
-			double lambda = linearResonance * 1 / tan((M_PI * resonantFrequency) / sampleRate);
-			double lambdaSquared = pow(lambda, 2);
+				//			Float64 linearResonanceInput = pow(10.0, 0.05 * -resonance);		// convert from decibels to linear
+				//			Float64 resonance = 1 - M_PI * (100 / sampleRate);
+			Float32 k = tan((M_PI * cutoffFrequency) / sampleRate);					//lambda
+			Float32 kSquared = pow(k, 2);
+			Float32 rootTwo = sqrt(2);
 			
-			double a0 = 1 / ((1 + (2 * lambda)) + lambdaSquared);							//calculate coefficents
-			double a1 = 2 * a0;
-			double a2 = a0;
-			double b1 = 2 * a0 * (1 - lambdaSquared);
-			double b2 = a0 * (1 - (2 * lambda) + lambdaSquared);
+			Float32 a0 = kSquared / (1 + rootTwo * k + kSquared);							//calculate coefficents
+			Float32 a1 = (2 * kSquared) / (1 + rootTwo * k + kSquared);
+			Float32 a2 = kSquared / (1 + rootTwo * k + kSquared);
+			Float32 b1 = 2 * (kSquared - 1) / (1 + rootTwo * k + kSquared);
+			Float32 b2 = (1 - rootTwo * k + kSquared) / (1 + rootTwo * k + kSquared);
 
-			std::vector<float> coefficients(5, 0);											//create vector with coefficients
+			std::vector<Float32> coefficients(5, 0);											//create vector with coefficients
 			coefficients[A0] = a0;
 			coefficients[A1] = a1;
 			coefficients[A2] = a2;
@@ -44,9 +46,29 @@ std::vector<Float32> FilterTypes::getFilterCoefficients(Float32 resonantFrequenc
 			return coefficients;
 		}
 			
-/*		case kHighpassFilter:
-			break;
-		
+		case kHighpassFilter:
+		{
+			Float64 lambda = ((M_PI * cutoffFrequency) / sampleRate);
+			Float64 lambdaSquared = pow(lambda, 2);
+			
+			Float64 a0 = 1 / (1 + (2 * lambda) + lambdaSquared);							//calculate coefficents
+			Float64 a1 = 2 * a0;
+			Float64 a2 = a0;
+			Float64 b1 = 2 * a0 * (lambdaSquared - 1);
+			Float64 b2 = a0 * (1 - (2 * lambda) + lambdaSquared);
+			
+			std::vector<Float32> coefficients(5, 0);											//create vector with coefficients
+			coefficients[A0] = a0;
+			coefficients[A1] = a1;
+			coefficients[A2] = a2;
+			coefficients[B1] = b1;
+			coefficients[B2] = b2;
+			
+			return coefficients;
+			
+		}
+			
+/*
 		case kResonatorFilter:
 			break;
 			
@@ -54,7 +76,7 @@ std::vector<Float32> FilterTypes::getFilterCoefficients(Float32 resonantFrequenc
 			break;
 */
 		default:
-			std::vector<float> empty;
+			std::vector<Float32> empty;
 			return empty;
 	}
 }
@@ -80,24 +102,20 @@ void FilterTypes::lowpassFilter(const Float32 *inputBuffer, Float32 *outputBuffe
 	}
 }
 
-	//incomplete below...
-
-/*
-float FilterTypes::highpassFilter(float *inputBuffer, float resonantFrequency,  float resonance, int bufferSize, float sampleRate)
+void FilterTypes::highpassFilter(const Float32 *inputBuffer, Float32 *outputBuffer, int bufferSize, std::vector<Float32> coefficients)
 {
-	double cos_theta, coEfficient;
-	cos_theta = 2.0 - cos(2 * M_PI * resonantFrequency / sampleRate);
-	coEfficient = cos_theta = sqrt(pow(cos_theta,2) - 1.0);
-	float delay[2] = {0.f, 0.f};
-	
-	for (int i = 0; i < bufferSize; i++)
+	for (int n = 2; n < bufferSize; n++)			//start at index n=2 to avoid segfault
 	{
-		inputBuffer[i] = (float) (inputBuffer[i] * (1 - coEfficient) - *delay * coEfficient);
-		*delay = inputBuffer[i];
+		outputBuffer[n] = (coefficients[A0] * inputBuffer[n])
+						+ (coefficients[A1] * inputBuffer[n-1])
+						+ (coefficients[A2] * inputBuffer[n-2])
+						- (coefficients[B1] * outputBuffer[n-1])
+						- (coefficients[B2] * outputBuffer[n-2]);
 	}
-	return *inputBuffer;
-}
 
+ }
+ 
+/*
 float FilterTypes::bandpassFilter(float *inputBuffer, float resonantFrequency, float bandwidth, int bufferSize, float sampleRate)
 {
 	double filterDiameter, filterRadius, filterRadiusSquared, cos_theta, scale, width;

@@ -16,6 +16,7 @@
 #include "FilterVersion.h"
 #include "FilterTypes.h"
 #include "FilterParameters.h"
+#include <vector>
 
 #pragma mark FilterKernel
 
@@ -37,9 +38,7 @@ public:
 	
 		//set filter type
 	void setFilterType(AudioUnitParameterValue inputParameterValue);
-	
-	void CalculateLopassParams(	double inFreq, double inResonance );
-	
+
 		// used by the custom property handled in the Filter class below
 	double GetFrequencyResponse( double inFreq );
 	
@@ -47,27 +46,9 @@ public:
 	
 private:
 	
-	AudioUnitParameterValue parameterValue;
-	
-	
-		//high/low pass select
-	bool lowpassON;
-	
-		// filter coefficients
-	double	mA0;
-	double	mA1;
-	double	mA2;
-	double	mB1;
-	double	mB2;
-	
-		// filter state
-	double	mX1;
-	double	mX2;
-	double	mY1;
-	double	mY2;
-	
-	double	mLastCutoff;
-	double	mLastResonance;
+	double mLastCutoff = 0;
+	std::vector<Float32> coefficients;
+	double	mLastResonance = 0;
 };
 
 #endif /* defined(__LowpassHighpassFilter__FilterKernel__) */

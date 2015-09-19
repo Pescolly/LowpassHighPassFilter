@@ -27,6 +27,7 @@ const int kBandpassFilter = 4;
 */
 
 	//enum of Filter parameters
+	//and filter types
 enum
 {
 	kFilterParam_ResonantFrequency = 0,
